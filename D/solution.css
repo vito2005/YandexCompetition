@@ -1,0 +1,44 @@
+:root {
+    --grey-color: #e5e5e5;
+    --blue-color: #2832f5;
+    --orange-color: #ffa308;
+    --black-color: #1f1f1f;
+    --size: 50px;
+}
+div.logo-yadrive {
+    display: inline-table;
+    margin: 10px;
+    width: var(--size);
+    height: var(--size);
+    font-size: var(--size);
+    position: relative;
+    background: var(--grey-color);
+    overflow: hidden;
+    border-radius: 15%;
+}
+
+.logo-yadrive:before,
+.logo-yadrive:after {
+    content: '';
+    position: absolute;
+    display: block;
+}
+
+.logo-yadrive:before {
+    background: var(--blue-color);
+    top: -33%;
+    left: -122%;
+    width: 200%;
+    height: 170%;
+    border-radius: 0 65% 100% 0;
+}
+
+.logo-yadrive:after {
+    background: var(--black-color);
+    border-right: .02em solid var(--orange-color);
+    top: 9%;
+    left: -55%;
+    width: 99%;
+    height: 86%;
+    border-radius: 79% 39% 71% 0;
+}

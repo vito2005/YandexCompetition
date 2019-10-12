@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача D</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        div {
+            width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+    </style>
+    <link rel="stylesheet" href="./solution.css">
+</head>
+<body>
+<h1>Задача D. Логотип Яндекс.Драйва (2 балла)</h1>
+<div>
+    Дизайнер обновил логотип Яндекс.Драйва (масштаб x5):
+    Его потребуется использовать в самых разных условиях.
+    Чтобы это было максимально удобно, сверстайте его с помощью одного HTML-элемента на чистом CSS.
+    Логотип может быть использован в произвольном месте интерфейса, поэтому важно, чтобы он корректно отображался на любом фоне.
+    Использовать картинки (даже через data:uri) нельзя.
+    <img src="./statement-image.png" alt="example">
+    <br>
+    Примечания:
+    Решение нужно предоставить в виде CSS-файла.
+    Ваш файл будет подключен как solution.css к HTML-странице
+    Важно: логотип должен находиться в верхнем левом углу страницы, вплотную прижатый к нему.
+    Ваше решение будет тестироваться в браузере Google Chrome 69.
+    <br>
+    Рекомендуем использовать плагины для pixel-perfect верстки, например, PerfectPixel.
+    <h2>Вариант решения:</h2>
+    <div class="logo-yadrive"></div>
+    <div class="logo-yadrive" style="--size: 100px"></div>
+    <div class="logo-yadrive" style="--size: 150px"></div>
+    <div >
+        <h3>CSS:</h3>
+        <code>
+            :root { <br>
+            --grey-color: #e5e5e5; <br>
+            --blue-color: #2832f5; <br>
+            --orange-color: #ffa308; <br>
+            --black-color: #1f1f1f; <br>
+            --size: 50px; <br>
+            } <br>
+            div { <br>
+            margin: 10px; <br>
+            width: var(--size); <br>
+            height: var(--size); <br>
+            font-size: var(--size); <br>
+            position: relative; <br>
+            background: var(--grey-color); <br>
+            overflow: hidden; <br>
+            border-radius: 15%; <br>
+            } <br>
+            <br>
+            div:before, <br>
+            div:after { <br>
+            content: ''; <br>
+            position: absolute; <br>
+            display: block; <br>
+            } <br>
+            <br>
+            div:before { <br>
+            background: var(--blue-color); <br>
+            top: -33%; <br>
+            left: -122%; <br>
+            width: 200%; <br>
+            height: 170%; <br>
+            border-radius: 0 65% 100% 0; <br>
+            } <br>
+            <br>
+            div:after { <br>
+            background: var(--black-color); <br>
+            border-right: .02em solid var(--orange-color); <br>
+            top: 9%; <br>
+            left: -55%; <br>
+            width: 99%; <br>
+            height: 86%; <br>
+            border-radius: 79% 39% 71% 0; <br>
+            } <br>
+        </code>
+    </div>
+</div>
+</body>
+</html>
