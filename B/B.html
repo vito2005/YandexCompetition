@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача B.</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        div {
+            width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+    </style>
+    <script src="B.js"></script>
+</head>
+<body>
+<h1>Задача B. Авиамаршруты (1 балл)</h1>
+<div>
+   Вы пишете новый сервис для поиска составных авиабилетов.
+          Необходимо написать функцию, которая найдет любую цепочку перелетов из пункта вылета в пункт назначения.
+          Функция принимает на вход пункт вылета, пункт назначения и функцию поиска билетов.
+        Функция должна вернуть промис, который зарезолвится - массивом из всех остановок
+      (например, [’A’, ’B’, ’C’]); - или строкой ’no way’, если до пункта назначения добраться нельзя.
+          Гарантируется, что составной авиабилет или отсутствует или единственно возможный (нет ромбовидных перелетов).
+      Нельзя искать несколько билетов параллельно. Нельзя использовать async/await и генераторы.
+    <br><br>
+          Интерфейс функции поиска билетов:
+
+        Возвращает список городов, до которых можно долететь из заданного. <br>
+    <code><br>
+        function fetchFlights(departurePoint: string): Promise &lt;string[]&gt;
+    </code>
+    <br><br>
+    Решение необходимо предоставить в виде CommonJS-модуля:
+<code><br>
+    module.exports = function (start, end, fetchFlights) { <br>
+    Your code here. <br>
+    ... <br>
+    return Promise.resolve(’no way’); <br>
+    return Promise.resolve([’A’, ’C’, ’D+’]); <br>
+    }; <br>
+</code>
+    Вердикт RE также означает, что отправленное решение неверно.
+    <br>
+    <br>
+    Формат ввода <br>
+    Необходимо построить маршрут из пункта A в пункт D+. <br> <br>
+
+    Формат вывода <br> <br>
+    [’A’, ’B’, ’D+’] <br>
+    1) рейсы для А: В и C; <br>
+
+    fetchFlights(’A’) => [’B’, ’C’] <br><br>
+    2) рейсы для B: D+; <br>
+
+    fetchFlights(’B’) => [’D+’] <br><br>
+    3) рейсы для C: D+; <br>
+
+    fetchFlights(’C’) => [] <br><br>
+    4) составной авиабилет найден [’A’, ’B’, ’D+’] <br>
+    <br>
+    <span>Входные данные:   ['A', 'B'],
+    ['A', 'D'],
+    ['A', 'C'],
+    ['D', 'K'],
+    ['D', 'M'],
+    ['D', 'L'],
+    ['M', 'Q'],
+    ['M', 'Z'],
+    ['L', 'G'],
+    ['L', 'F'],
+    ['F', 'Y'],
+    ['G', 'Z']</span>
+    <br><br>
+    <button onclick="findRoute('A', 'Z', fetchFlights).then(result => document.getElementById('result').innerHTML = result)">Рассчитать маршрут</button>
+    <br><br>
+    <div id="result"></div>
+</div>
+</body>
+</html>
+
+
