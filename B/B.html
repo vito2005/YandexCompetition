@@ -60,7 +60,44 @@
 
     fetchFlights(’C’) => [] <br><br>
     4) составной авиабилет найден [’A’, ’B’, ’D+’] <br>
-    <br>
+    <br><br>
+    <h2>Решение: </h2>
+        <pre>
+            module.exports = function (start, end, fetchFlights) {
+              let fetchPromise, route
+              const routes = [[start]]
+              const last = arr => arr[arr.length - 1]
+              const responseExecution = response => {
+                if (response.includes(end)) {
+                  route = [...routes.map(list => last(list)), end]
+                } else if (response.length) {
+                  routes.push(response)
+                } else {
+                  while (routes.length && last(routes).length === 1) {
+                    routes.pop()
+                  }
+                  if (!routes.length) {
+                    route = 'no way'
+                  } else {
+                    last(routes).pop()
+                  }
+                }
+                if (!route) {
+                  fetchPromise = fetchPromise.then(responseExecution)
+                  return fetchFlights(last(last(routes)))
+                }
+              }
+              fetchPromise = fetchFlights(start).then(responseExecution)
+              return new Promise((resolve, reject) => {
+                const id = setInterval(() => {
+                  if (route) {
+                    clearInterval(id)
+                    resolve('Составной авиабилет найден: [ ' + route.join(', ') + ' ]')
+                  }
+                }, 1000)
+              })
+            }
+        </pre>
     <span>Входные данные:   ['A', 'B'],
     ['A', 'D'],
     ['A', 'C'],
@@ -72,8 +109,7 @@
     ['L', 'G'],
     ['L', 'F'],
     ['F', 'Y'],
-    ['G', 'Z']</span>
-    <br><br>
+    ['G', 'Z']</span><br><br>
     <button onclick="findRoute('A', 'Z', fetchFlights).then(result => document.getElementById('result').innerHTML = result)">Рассчитать маршрут</button>
     <br><br>
     <div id="result"></div>
